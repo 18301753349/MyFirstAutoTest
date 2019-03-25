@@ -1,6 +1,5 @@
 package com.houbank.utils;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.apache.poi.ss.usermodel.*;
 
@@ -125,7 +124,6 @@ public class ExcelDataProvider implements Iterator<Object[]> {
 				temp = "";
 			}
 			rowData.put(this.columnnName[j], temp);
-			// logger.info(rowData.toString());
 		}
 
 		return rowData;

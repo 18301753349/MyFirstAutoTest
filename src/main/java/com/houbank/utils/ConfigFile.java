@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 public class ConfigFile {
 
-    public static ResourceBundle bundle = ResourceBundle.getBundle("application", Locale.CHINA);
+    public static ResourceBundle application = ResourceBundle.getBundle("application", Locale.CHINA);
+
 
 }

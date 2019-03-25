@@ -3,6 +3,7 @@ package com.houbank.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.log4j.Log4j2;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -18,8 +19,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URI;
 import java.util.*;
@@ -39,8 +38,8 @@ import java.util.Map.Entry;
  * name)等方法可获取服务器的响应头。 7:释放连接。无论执行方法是否成功，都必须释放连接
  **/
 
+@Log4j2
 public class SendRequestHeader {
-    public static Logger logger = LogManager.getLogger(SendRequestHeader.class);
     static CloseableHttpClient httpClient = HttpClients.createDefault();
     static CloseableHttpResponse response = null;
     static HttpGet httpGet = new HttpGet();
@@ -68,7 +67,7 @@ public class SendRequestHeader {
         } else if (response.getStatusLine().getStatusCode() == 302) {
             return response.getFirstHeader("Location").toString();
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
 
         }
@@ -119,7 +118,7 @@ public class SendRequestHeader {
         } else if (response.getStatusLine().getStatusCode() == 302) {
             return response.getFirstHeader("Location").toString();
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
         }
     }
@@ -161,7 +160,7 @@ public class SendRequestHeader {
             return response.getFirstHeader("Location").toString();
 
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
         }
     }
@@ -194,7 +193,7 @@ public class SendRequestHeader {
             return response.getFirstHeader("Location").toString();
 
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
         }
     }
@@ -226,7 +225,7 @@ public class SendRequestHeader {
             return response.getFirstHeader("Location").toString();
 
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
         }
 
@@ -262,7 +261,6 @@ public class SendRequestHeader {
 //            return response.getFirstHeader("Location").toString();
 //
 //        } else {
-//            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
 //            throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
 //        }
 
@@ -298,7 +296,7 @@ public class SendRequestHeader {
             return response.getFirstHeader("Location").toString();
 
         } else {
-            logger.error("请求失败 : " + response.getStatusLine().getStatusCode());
+            log.error("请求失败 : " + response.getStatusLine().getStatusCode());
             throw new Exception(url + "状态码:" + String.valueOf(response.getStatusLine().getStatusCode()));
         }
 

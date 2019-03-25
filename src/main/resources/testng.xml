@@ -4,7 +4,8 @@
         <classes>
             <class name="com.houbank.cases.LoginTest">
                 <methods>
-                    <include name="loginTest"/>
+                    <!--<include name="loginTest"/>-->
+                    <include name = "smsCodeLoginTest"/>
                 </methods>
             </class>
         </classes>
