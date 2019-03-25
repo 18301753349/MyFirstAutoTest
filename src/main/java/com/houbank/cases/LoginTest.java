@@ -20,7 +20,7 @@ import java.util.Map;
 @Log4j2
 public class LoginTest {
 
-    private static String apploginkey = "3FADAE9950B216AF";
+    private static String apploginkey = "1234567";
 
     private JedisTemple redis = new JedisTemple();
 
