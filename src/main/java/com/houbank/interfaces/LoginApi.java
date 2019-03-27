@@ -21,7 +21,7 @@ import java.util.Map;
 public class LoginApi {
 
 
-    private static String apploginkey = "3FADAE9950B216AF";
+    private static String apploginkey = "123456";
 
     //登录接口
     public static String login(Map<String, Object> caseData) throws Exception {
