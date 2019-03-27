@@ -100,4 +100,27 @@ public class RedisUtil {
         return result;
     }
 
+    public static String set(String key, String value, Jedis jedis) {
+        String result = null;
+        try {
+            result = jedis.set(key, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (jedis != null) jedis.close();
+        }
+        return result;
+    }
+
+    public static Long del(String key, Jedis jedis) {
+        Long result = null;
+        try {
+            result = jedis.del(defaultKeySerializer.serialize(key));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (jedis != null) jedis.close();
+        }
+        return result;
+    }
 }
