@@ -21,9 +21,6 @@ import java.util.Map;
 @Log4j2
 public class LoginTest {
 
-
-    private static String apploginkey = "3FADAE9950B216AF";
-
     private Jedis jedis;
 
     @BeforeTest

@@ -157,10 +157,16 @@ public class ExtentTestNGIReporterListener implements IReporter {
 
                 //用例名
                 String name = "";
+                String caseId = "";
+                String caseName = "";
                 Object[] params = result.getParameters();
+                Map<String,Object> map = new HashMap<>();
                 for(Object param : params) {
                     try {
-                        obj2Map(param);
+                        map = (Map<String,Object>) param;
+                        caseId = map.get("id").toString();
+                        caseName  = map.get("name").toString();
+                        name = caseId + "、" + (caseName);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -169,18 +175,19 @@ public class ExtentTestNGIReporterListener implements IReporter {
                 List<String> outputList = Reporter.getOutput(result);
 
                 if(extenttest==null){
-                    test = extent.createTest(methodName);
+                    test = extent.createTest(name);
                 }else{
                     //作为子节点进行创建时，设置同父节点的标签一致，便于报告检索。
-                    test = extenttest.createNode(methodName).assignCategory(categories);
+                    test = extenttest.createNode(name).assignCategory(categories);
                 }
-                //test.getModel().setDescription(description.toString());
-                //test = extent.createTest(result.getMethod().getMethodName());
                 for (String group : result.getMethod().getGroups())
                     test.assignCategory(group);
 
                 for(String output:outputList){
                     //将用例的log输出报告中
+//                    for(Map.Entry m : map.entrySet()) {
+//                        test.info(m.getKey() + ":" + m.getValue());
+//                    }
                     test.debug(output);
                 }
                 if (result.getThrowable() != null) {
@@ -200,22 +207,6 @@ public class ExtentTestNGIReporterListener implements IReporter {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
         return calendar.getTime();
-    }
-
-    public Map<String,Object> obj2Map(Object obj) throws Exception{
-        Map<String,Object> map=new HashMap<String, Object>();
-        BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
-        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-        for (PropertyDescriptor property : propertyDescriptors) {
-            String key = property.getName();
-            if (key.compareToIgnoreCase("class") == 0) {
-                continue;
-            }
-            Method getter = property.getReadMethod();
-            Object value = getter!=null ? getter.invoke(obj) : null;
-            map.put(key, value);
-        }
-        return map;
     }
 
 }
